@@ -1,5 +1,6 @@
 package org.lessons.java.travelAgency;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
@@ -59,13 +60,18 @@ public class Vacanza {
     public long calcoloGiorniVacanza(){
         return ChronoUnit.DAYS.between(dataInizio, dataFine);
     }
+
     public String toString (){
         String info;
+        BigDecimal prezzo12 = BigDecimal.valueOf(0.00);
         info = ("Hai prenotato una vacanza per: " + getDestinazione() + " di " + calcoloGiorniVacanza() + " giorni, (dal " + getDataInizio() + " al " + getDataFine()+")");
         for (Escursione escursione : escursioni){
             info += ("\n" + "La città scelta per l'escursione  è:  " + escursione.getNomeCitta() + " il prezzo totale è di: " + escursione.getPrezzoTotale() + " euro");
+            prezzo12 = prezzo12.add(escursione.getPrezzoTotale());
 
         }
+        info += ("\n" + "Il prezzo totale della tua vacanza è di:" + prezzo12 + " euro");
+
         return info;
     }
 }

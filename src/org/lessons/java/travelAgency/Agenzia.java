@@ -84,7 +84,7 @@ public class Agenzia {
                         List <Escursione> escursioneUtente = askEscursioni(scan);
                         nozze.setEscursioni(escursioneUtente);
 
-                        nozze.toString();
+                        System.out.println(nozze.toString());
                     }
                     else if (extra.equals("2")){
                         System.out.println("Hai scelto un viaggio di gruppo.");
@@ -105,14 +105,14 @@ public class Agenzia {
                         List <Escursione> escursioneUtente = askEscursioni(scan);
                         gruppo.setEscursioni(escursioneUtente);
 
-                        gruppo.toString();
+                        System.out.println(gruppo.toString());
 
                     }else if(extra.equals("3")){
                         System.out.println("Non sono stati selezionati extra");
                         Vacanza vacanza = new Vacanza(destinazione, dataPartenza, dataRitorno);
                         List <Escursione> escursioneUtente = askEscursioni(scan);
                         vacanza.setEscursioni(escursioneUtente);
-                        vacanza.toString();
+                        System.out.println(vacanza.toString());
                     }
 
 
