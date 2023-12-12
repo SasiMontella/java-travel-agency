@@ -21,9 +21,16 @@ public class ViaggioGruppo extends Vacanza{
         return fasciaEta;
     }
     @Override
-    public void getTravelInfo (){
-        System.out.println("La tua fascia di età è: " + fasciaEta + "\n" + "Hai prenotato una vacanza per: " + getDestinazione() + " di " + calcoloGiorniVacanza() + " giorni, (dal " + getDataInizio() + " al " + getDataFine()+")" +
+    public  String toString(){
+        String info;
+        info = ("La tua fascia di età è: " + fasciaEta + "\n" + "Hai prenotato una vacanza per: " + getDestinazione() + " di " + calcoloGiorniVacanza() + " giorni, (dal " + getDataInizio() + " al " + getDataFine()+")" +
         "\n" + "Il gruppo sarà di: " + numeroGruppo + " persone");
+        for (Escursione escursione : getEscursioni()){
+            info += ("\n" + "La città scelta per l'escursione  è:  " + escursione.getNomeCitta() + " il prezzo totale è di: " + escursione.getPrezzoTotale() + " euro");
+
+        }
+        return info;
+
     }
 
 }

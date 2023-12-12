@@ -1,6 +1,8 @@
 package org.lessons.java.travelAgency;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Agenzia {
@@ -8,10 +10,11 @@ public class Agenzia {
         Scanner scan = new Scanner(System.in);
 
 
+
         //chiedere se si vuole prenotare una vacanza
         boolean check = false;
         while (!check) {
-            System.out.print("Vuoi prenotare una vacanza? (y/n)");
+            System.out.println("Vuoi prenotare una vacanza? (y/n)");
             String choise = scan.nextLine();
             if (choise.equals("y")) {
 
@@ -77,8 +80,14 @@ public class Agenzia {
                         String drinkChoice = scan.nextLine();
                         boolean drink = drinkChoice.equals("y");
                         ViaggioNozze nozze = new ViaggioNozze(destinazione, dataPartenza, dataRitorno, massage, spa, drink);
-                        nozze.getTravelInfo();
-                    }else if (extra.equals("2")){
+
+                        List <Escursione> escursioneUtente = askEscursioni(scan);
+                        nozze.setEscursioni(escursioneUtente);
+
+                        nozze.toString();
+                    }
+                    else if (extra.equals("2")){
+                        System.out.println("Hai scelto un viaggio di gruppo.");
                         System.out.println("In quanti siete?");
                         int numeroGruppo = Integer.parseInt(scan.nextLine());
                         System.out.println("Indicami la tua età");
@@ -92,12 +101,18 @@ public class Agenzia {
                             fasciaEta = "maggiorenne";
                         }
                         ViaggioGruppo gruppo = new ViaggioGruppo(destinazione, dataPartenza, dataRitorno, numeroGruppo, fasciaEta);
-                        gruppo.getTravelInfo();
+
+                        List <Escursione> escursioneUtente = askEscursioni(scan);
+                        gruppo.setEscursioni(escursioneUtente);
+
+                        gruppo.toString();
 
                     }else if(extra.equals("3")){
                         System.out.println("Non sono stati selezionati extra");
                         Vacanza vacanza = new Vacanza(destinazione, dataPartenza, dataRitorno);
-                        vacanza.getTravelInfo();
+                        List <Escursione> escursioneUtente = askEscursioni(scan);
+                        vacanza.setEscursioni(escursioneUtente);
+                        vacanza.toString();
                     }
 
 
@@ -113,7 +128,33 @@ public class Agenzia {
                 System.out.println("attieniti alle regole");
             }
         }
+       /* Escursione escursione = new Escursione("Roma", 23);
+        System.out.println(escursione.toString());*/
 
         scan.close();
+    }
+    public static List<Escursione> askEscursioni (Scanner scan){
+        ArrayList <Escursione> escursioni = new ArrayList<>();
+        boolean stop = false;
+        while (!stop) {
+            System.out.println("Vuoi aggiungere un'escursione alla tua vacanza? (y/n)");
+            String gita = scan.nextLine();
+            if (gita.equals("y")) {
+                System.out.println("In che città vuoi fare l'escursione? ");
+                String citta = scan.nextLine();
+                System.out.println("Quanto vuoi far durare l'escursione? ");
+                int durata = Integer.parseInt(scan.nextLine());
+                Escursione escursione = new Escursione(citta, durata);
+                escursioni.add(escursione);
+
+            } else if (gita.equals("n")) {
+                System.out.println("okay :c");
+                //vacanza.setEscursioni(escursioni);
+                stop = true;
+            } else {
+                System.out.println("dovresti inserire una scelta valida");
+            }
+        }
+        return escursioni;
     }
 }
