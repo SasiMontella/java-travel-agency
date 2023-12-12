@@ -45,7 +45,10 @@ public class Vacanza {
             throw new IllegalArgumentException("Dovresti decidere dove andare.");
         }
     }
-    private long calcoloGiorniVacanza(){
+    public long calcoloGiorniVacanza(){
         return ChronoUnit.DAYS.between(dataInizio, dataFine);
+    }
+    public void getTravelInfo (){
+        System.out.println("Hai prenotato una vacanza per: " + getDestinazione() + " di " + calcoloGiorniVacanza() + " giorni, (dal " + getDataInizio() + " al " + getDataFine()+")");
     }
 }
